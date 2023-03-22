@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Digital Timers Example</title>
+	<style>
+		body {
+			background-image: url("https://www.cityofsydney.nsw.gov.au/-/media/corporate/images/programs/cultural-support-funding/sydney-new-years-eve-photography-expression-of-interest/nye-eoi-photograher.jpg?h=1536&w=2048&hash=13334CF9DBBCD10B48F5CBA2E417162C");
+			background-size: cover;
+            background-position-y: -300px;
+			background-repeat: no-repeat;
+			font-family: Arial, sans-serif;
+			color: #fff;
+			text-align: center;
+		}
+		.timer-container {
+			display: inline-block;
+			margin: 50px;
+			background-color: rgba(0, 0, 0, 0.7);
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px #fff;
+		}
+		.timer {
+			font-size: 60px;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+		.timer-label {
+			font-size: 20px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+	</style>
+</head>
+<body>
+	<div class="timer-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+		<div class="timer" id="countdown-1"></div>
+		<div class="timer-label">Countdown until 21st December 2023</div>
+	</div>
+	<div class="timer-container" style="position: absolute; top: 20px; left: 20px;">
+		<div class="timer" id="countdown-2"></div>
+		<div class="timer-label">Countdown until 11th June 2023</div>
+	</div>
+	<div class="timer-container" style="position: absolute; top: 20px; right: 20px;">
+		<div class="timer" id="countdown-3"></div>
+		<div class="timer-label">Countdown until 8th July 2023</div>
+	</div>
+	<div class="timer-container" style="position: absolute; bottom: 50px; left: 50%; transform: translate(-50%, 50%);">
+		<div class="timer" id="countdown-4"></div>
+		<div class="timer-label">Countdown until 21st February 2024</div>
+	</div>
+	
+	<script>
+		// Set the target dates for the countdowns
+		var countdownDate1 = new Date("December 21, 2023 00:00:00").getTime();
+		var countdownDate2 = new Date("June 11, 2023 00:00:00").getTime();
+		var countdownDate3 = new Date("July 8, 2023 00:00:00").getTime();
+		var countdownDate4 = new Date("February 21, 2024 00:00:00").getTime();
+
+		// Update the countdowns every second
+		var x = setInterval(function() {
+			var now = new Date().getTime();
+			var distance1 = countdownDate1 - now;
+			var distance2 = countdownDate2 - now;
+			var distance3 = countdownDate3 - now;
+			var distance4 = countdownDate4 - now;
+
+// Calculate the remaining days, hours, minutes, and seconds
+var days1 = Math.floor(distance1 / (1000 * 60 * 60 * 24));
+var hours1 = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes1 = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
+var seconds1 = Math.floor((distance1 % (1000 * 60)) / 1000);
+
+var days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+var hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+var seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+
+var days3 = Math.floor(distance3 / (1000 * 60 * 60 * 24));
+var hours3 = Math.floor((distance3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes3 = Math.floor((distance3 % (1000 * 60 * 60)) / (1000 * 60));
+var seconds3 = Math.floor((distance3 % (1000 * 60)) / 1000);
+
+var days4 = Math.floor(distance4 / (1000 * 60 * 60 * 24));
+var hours4 = Math.floor((distance4 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes4 = Math.floor((distance4 % (1000 * 60 * 60)) / (1000 * 60));
+var seconds4 = Math.floor((distance4 % (1000 * 60)) / 1000);
+
+// Display the countdowns
+document.getElementById("countdown-1").innerHTML = days1 + "d " + hours1 + "h " + minutes1 + "m " + seconds1 + "s ";
+document.getElementById("countdown-2").innerHTML = days2 + "d " + hours2 + "h " + minutes2 + "m " + seconds2 + "s ";
+document.getElementById("countdown-3").innerHTML = days3 + "d " + hours3 + "h " + minutes3 + "m " + seconds3 + "s ";
+document.getElementById("countdown-4").innerHTML = days4 + "d " + hours4 + "h " + minutes4 + "m " + seconds4 + "s ";
+
+// When the countdowns end, display "Expired"
+if (distance1 < 0) {
+    clearInterval(x);
+    document.getElementById("countdown-1").innerHTML = "Expired";
+}
+
+if (distance2 < 0) {
+    clearInterval(x);
+    document.getElementById("countdown-2").innerHTML = "Expired";
+}
+
+if (distance3 < 0) {
+    clearInterval(x);
+    document.getElementById("countdown-3").innerHTML = "Expired";
+}
+
+if (distance4 < 0) {
+    clearInterval(x);
+    document.getElementById("countdown-4").innerHTML = "Expired";
+}
+	}, 1000);
+</script>
+</body>
+</html>
